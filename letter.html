@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Add this script to the head of your letter.html file -->
+<script>
+    function showLetterForm() {
+        // Get recipient's email
+        var recipientEmail = document.getElementById('recipientEmail').value;
+
+        // Set recipient's email in the second form
+        document.getElementById('recipient').value = recipientEmail;
+
+        // Show the second form
+        document.getElementById('recipientForm').style.display = 'none';
+        document.getElementById('letterForm').style.display = 'block';
+    }
+
+    function submitLetter() {
+        // Get form values
+        var recipient = document.getElementById('recipient').value;
+        var subject = document.getElementById('subject').value;
+        var message = document.getElementById('message').value;
+        var senderEmail = document.getElementById('senderEmail').value;
+
+        // Validate or process the data as needed
+
+        // Send the letter details to the server using fetch API
+        fetch('/send-letter', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                recipient: recipient,
+                subject: subject,
+                message: message,
+                senderEmail: senderEmail
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            // Optionally, you can reset the form after successful submission
+            document.getElementById('letterForm').reset();
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error sending letter');
+        });
+    }
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Letter Writing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Your Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News Writing</a></li>
+            <li><a href="essay.html">Essay Writing</a></li>
+            <li><a href="letter.html">Letter Writing</a></li>
+        </ul>
+    </nav>
+
+    <section id="letter">
+        <h2>Write a Letter</h2>
+        <form id="recipientForm">
+            <label for="recipientEmail">Recipient's Email:</label>
+            <input type="email" id="recipientEmail" name="recipientEmail" required>
+            <button type="button" onclick="showLetterForm()">Next</button>
+        </form>
+
+        <form id="letterForm" style="display: none;">
+            <label for="recipient">Recipient:</label>
+            <input type="text" id="recipient" name="recipient" readonly>
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject" required>
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+
+            <label for="senderEmail">Your Email:</label>
+            <input type="email" id="senderEmail" name="senderEmail" required>
+
+            <button type="button" onclick="submitLetter()">Send Letter</button>
+        </form>
+    </section>
+
+
+
+    <script>
+        function showLetterForm() {
+            // Get recipient's email
+            var recipientEmail = document.getElementById('recipientEmail').value;
+
+            // Set recipient's email in the second form
+            document.getElementById('recipient').value = recipientEmail;
+
+            // Show the second form
+            document.getElementById('recipientForm').style.display = 'none';
+            document.getElementById('letterForm').style.display = 'block';
+        }
+
+        function submitLetter() {
+            // Get form values
+            var recipient = document.getElementById('recipient').value;
+            var subject = document.getElementById('subject').value;
+            var message = document.getElementById('message').value;
+            var senderEmail = document.getElementById('senderEmail').value;
+
+            // Validate or process the data as needed
+
+            // Send the letter details to the server (you'll need server-side code for this)
+            // Example: Use AJAX to send data to the server
+            // Note: This is just a placeholder, you need server-side code for email sending
+            // For example, using Node.js with a package like nodemailer or using PHP's mail function.
+
+            // For now, let's just display an alert with the submitted data
+            alert('Letter submitted!\nRecipient: ' + recipient + '\nSubject: ' + subject + '\nMessage: ' + message +
+                '\nYour Email: ' + senderEmail);
+
+            // Optionally, you can reset the form after submission
+            document.getElementById('letterForm').reset();
+        }
+    </script>
+</body>
+
+</html>

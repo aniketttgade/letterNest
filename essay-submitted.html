@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Website - Essay Submitted</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Your Website</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News Writing</a></li>
+            <li><a href="essay.html">Essay Writing</a></li>
+            <li><a href="letter.html">Letter Writing</a></li>
+        </ul>
+    </nav>
+    <section id="essay-submitted">
+        <h2>Essay Submitted</h2>
+        <p>Your essay has been successfully submitted. Thank you!</p>
+
+        <!-- Display the saved essay from local storage -->
+        <h3>Saved Essay:</h3>
+        <p>Title: <span id="savedEssayTitle"></span></p>
+        <p>Content: <span id="savedEssayContent"></span></p>
+    </section>
+
+    <script src="displaySavedEssay.js" defer></script>
+</body>
+
+</html>

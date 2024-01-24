@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submitted News - Your Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Your Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News Writing</a></li>
+            <li><a href="#essay">Essay Writing</a></li>
+            <li><a href="#letter">Letter Writing</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>Submitted News</h2>
+        <!-- Display all submitted news (replace with server-side code) -->
+        <div id="submittedNews"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Website</p>
+    </footer>
+
+    <!-- JavaScript to retrieve and display all submitted news -->
+    <script>
+        // Retrieve all submitted news from local storage (replace with server-side code)
+        const submittedNews = JSON.parse(localStorage.getItem("news")) || [];
+
+        // Display all submitted news
+        if (submittedNews.length > 0) {
+            const newsContainer = document.getElementById("submittedNews");
+            submittedNews.forEach(news => {
+                newsContainer.innerHTML += `
+                    <div>
+                        <h3>${news.title}</h3>
+                        <p>Date: ${news.date}</p>
+                        <p>Author: ${news.author}</p>
+                        <p>${news.content}</p>
+                        <hr>
+                    </div>
+                `;
+            });
+        } else {
+            document.getElementById("submittedNews").innerHTML = '<p>No news submitted yet.</p>';
+        }
+    </script>
+</body>
+
+</html>

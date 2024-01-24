@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Writing - Your Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Your Website</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="news.html">News Writing</a></li>
+            <li><a href="essay.html">Essay Writing</a></li>
+            <li><a href="#letter">Letter Writing</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <h2>News Writing</h2>
+
+        <!-- Form for user submission -->
+        <form id="newsForm">
+            <label for="newsTitle">News Title:</label>
+            <input type="text" id="newsTitle" name="newsTitle" required>
+
+            <label for="newsDate">Date:</label>
+            <input type="date" id="newsDate" name="newsDate" required>
+
+            <label for="newsAuthor">Author:</label>
+            <input type="text" id="newsAuthor" name="newsAuthor" required>
+
+            <label for="newsContent">News Content:</label>
+            <textarea id="newsContent" name="newsContent" rows="4" required></textarea>
+
+            <input type="submit" value="Submit News">
+        </form>
+    </section>
+
+
+    <!-- JavaScript for form submission -->
+    <script>
+        document.getElementById("newsForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            // Retrieve form values
+            const title = document.getElementById("newsTitle").value;
+            const date = document.getElementById("newsDate").value;
+            const author = document.getElementById("newsAuthor").value;
+            const content = document.getElementById("newsContent").value;
+
+            // Simulate storing the submitted news in local storage (replace with server-side code)
+            const submittedNews = {
+                title,
+                date,
+                author,
+                content
+            };
+
+            // Save to local storage (replace with server-side code)
+            const existingNews = JSON.parse(localStorage.getItem("news")) || [];
+            existingNews.push(submittedNews);
+            localStorage.setItem("news", JSON.stringify(existingNews));
+
+            // Redirect to a new page to display the submitted news
+            window.location.href = `submitted_news.html?title=${encodeURIComponent(title)}`;
+        });
+    </script>
+</body>
+
+</html>
